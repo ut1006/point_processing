@@ -8,7 +8,7 @@ def visualize_pca_directions(ply_file):
     pcd = o3d.io.read_point_cloud(ply_file)
     
     # Octree作成
-    octree = o3d.geometry.Octree(max_depth=2)
+    octree = o3d.geometry.Octree(max_depth=5)
     octree.convert_from_point_cloud(pcd, size_expand=0.01)
 
     lines = []
@@ -28,7 +28,7 @@ def visualize_pca_directions(ply_file):
             pca.fit(node_points)
 
             l = pca.explained_variance_[0]
-            vector = pca.components_[2]
+            vector = pca.components_[0]
 
             print(f"Explained variance: {l}")
             print(f"Principal component vector: {vector}")
@@ -62,7 +62,7 @@ def visualize_pca_directions(ply_file):
             line_set.paint_uniform_color([1, 0, 0])
             print("=")
             # 点群と線分を可視化
-            o3d.visualization.draw_geometries([pcd, line_set])
+            o3d.visualization.draw_geometries([line_set])
         else:
             print("No lines to display.")
     else:
