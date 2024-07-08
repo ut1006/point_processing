@@ -9,6 +9,7 @@ def compute_oriented_bounding_box(points):
     # 点群からOBBを計算する
     aabb = o3d.geometry.AxisAlignedBoundingBox.create_from_points(points_o3d)
     obb = aabb.get_oriented_bounding_box()
+    obb=aabb
     return obb
 
 def visualize_point_cloud_with_octree(ply_file):
